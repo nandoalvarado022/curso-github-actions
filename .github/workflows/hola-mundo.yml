@@ -17,3 +17,9 @@ jobs:
 
       - name: Run JavaScript file
         run: node main.js
+      
+      - name: Definir variable nombre
+        run: echo "NOMBRE=${{ github.actor }}" >> $GITHUB_ENV
+
+      - name: Imprimir variable nombre
+        run: echo "El usuario de GitHub es $NOMBRE"
