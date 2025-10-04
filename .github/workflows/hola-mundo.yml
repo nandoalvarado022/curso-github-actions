@@ -1,0 +1,30 @@
+name: Mi workflow
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Usando Node JS
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Ejecutar archivo JavaScript
+        run: node main.js
+      
+      - name: Definir variable nombre
+        run: echo "NOMBRE=${{ github.actor }}" >> $GITHUB_ENV
+
+      - name: Imprimir variable nombre
+        run: echo "El usuario de GitHub es $NOMBRE"
