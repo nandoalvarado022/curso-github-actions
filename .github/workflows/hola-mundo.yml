@@ -1,8 +1,11 @@
-name: My custom workflow
+name: Mi workflow
 
 on:
-  push:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - develop
 
 jobs:
   run-script:
