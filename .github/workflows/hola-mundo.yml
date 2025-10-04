@@ -1,7 +1,6 @@
-name: Mi workflow
+name: Mi primer workflow
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main

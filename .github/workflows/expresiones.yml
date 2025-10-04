@@ -1,11 +1,28 @@
 # Ejemplos de expresiones comunes en GitHub Actions
 
 name: Ejemplos de Expresiones
+run-name: "Aprendiendo a utilizar expresiones en GitHub Actions"
 
 on:
   workflow_dispatch:
+    inputs:
+      edad:
+        description: '¿Cuál es tu edad?'
+        required: true
+        type: number
+      nombre:
+        description: '¿Cuál es tu nombre?'
+        required: false
+        type: string
 
 jobs:
+  mayor:
+    if: ${{ fromJson(inputs.edad) > 18 }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar edad
+        run: echo "Eres mayor de edad."
+
   expresiones:
     runs-on: ubuntu-latest
     steps:
