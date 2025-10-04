@@ -1,0 +1,39 @@
+# Ejemplos de expresiones comunes en GitHub Actions
+
+name: Ejemplos de Expresiones
+
+on:
+  workflow_dispatch:
+
+jobs:
+  expresiones:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mostrar variables y expresiones
+        run: |
+          echo "Actor: ${{ github.actor }}"
+          echo "Repositorio: ${{ github.repository }}"
+          echo "SHA del commit: ${{ github.sha }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Evento: ${{ github.event_name }}"
+          echo "Directorio de trabajo: ${{ github.workspace }}"
+          echo "Ruta del workflow: ${{ github.workflow }}"
+
+      - name: Expresión condicional
+        if: ${{ github.actor == 'nandoalvarado022' }}
+        run: echo "Este paso solo se ejecuta si el usuario es nandoalvarado022"
+
+      - name: Usar un output de otro paso
+        id: ejemplo
+        run: echo "saludo=Hola, mundo!" >> $GITHUB_OUTPUT
+
+      - name: Mostrar output de otro paso
+        run: |
+          echo "Saludo: ${{ steps.ejemplo.outputs.saludo }}"
+
+      - name: Expresión con matriz (ejemplo en bash)
+        run: |
+          for i in 1 2 3; do
+            echo "Elemento $i"
+          done
